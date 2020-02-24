@@ -8,7 +8,6 @@ const max_sub_array_of_size_k = function(k, arr) {
       windowSum -= arr[windowStart];
       maxSum = Math.max(maxSum, windowSum);
       windowStart++;
-
     }
   }
   return maxSum;
