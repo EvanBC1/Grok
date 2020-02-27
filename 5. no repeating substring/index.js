@@ -1,7 +1,7 @@
 const fruits_into_baskets = function(fruits) {
-let windowStart = 0,
-  maxFruit = 0,
-  fruitMap = {};
+  let windowStart = 0,
+    maxFruit = 0,
+    fruitMap = {};
 
   for (let windowEnd = 0; windowEnd < fruits.length; windowEnd++) {
     const rightFruit = fruits[windowEnd];
