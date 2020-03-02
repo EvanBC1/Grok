@@ -1,28 +1,30 @@
-const on_repeat_substring = function(fruits) {
+const length_of_longest_substring = function(str, k) {
   let windowStart = 0,
-    maxFruit = 0,
-    fruitMap = {};
+    longestSubString = 0,
+    maxRepeatLetterCount = k,
+    stringMap = {};
 
-  for (let windowEnd = 0; windowEnd < fruits.length; windowEnd++) {
-    const rightFruit = fruits[windowEnd];
-    if (!(rightFruit in fruitMap)) {
-      fruitMap[rightFruit] = 0;
+
+  for (let windowEnd = 0; windowEnd < str.length; windowEnd++) {
+    const rightFruit = str[windowEnd];
+    if (!(rightFruit in stringMap)) {
+      stringMap[rightFruit] = 0;
     }
-    fruitMap[rightFruit]++;
+    stringMap[rightFruit]++;
 
-    while (fruitMap[rightFruit] > 1) {
-      const leftFruit = fruits[windowStart];
-      fruitMap[leftFruit] -= 1;
-      if (fruitMap[leftFruit] === 0) {
-        delete fruitMap[leftFruit];
+    while (stringMap[rightFruit] > 1) {
+      const leftFruit = str[windowStart];
+      stringMap[leftFruit] -= 1;
+      if (stringMap[leftFruit] === 0) {
+        delete stringMap[leftFruit];
       }
       windowStart++;
     }
-    maxFruit = Math.max(maxFruit, windowEnd - windowStart + 1);
+    longestSubString = Math.max(longestSubString, windowEnd - windowStart + 1);
   }
-  return maxFruit;
+  return longestSubString;
 };
 
-console.log('you can fit: ' + on_repeat_substring('aabccbb'));
-console.log('you can fit: ' + on_repeat_substring("abbbb"));
-console.log('you can fit: ' + on_repeat_substring("abccde"));
+console.log('you can fit: ' + length_of_longest_substring('aabccbb', k=2));
+console.log('you can fit: ' + length_of_longest_substring("abbbb", k=1));
+console.log('you can fit: ' + length_of_longest_substring("abccde", k=1));
